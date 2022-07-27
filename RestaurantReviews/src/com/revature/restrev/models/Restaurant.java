@@ -1,5 +1,12 @@
 package com.revature.restrev.models;
 // package that your class belongs to is listed at the top of the file 
+
+import com.revature.restrev.exceptions.*;
+/**
+ * POJO for my restaurants
+ * @author MarielleNolasco
+ *
+ */
 public class Restaurant {
 	// public - access modifier
 	// class - type you're creating 
@@ -18,6 +25,9 @@ public class Restaurant {
 	// methods - behavior of the class
 	
 	//fields
+	/**
+	 * Restaurant Name
+	 */
 	public String name;
 	// write only
 	private String city;
@@ -28,13 +38,17 @@ public class Restaurant {
 	
 	//getters and setters are useful for adding validation logic into your fields as well
 	// as some security features by making some fields readonly or write only 
+	/**
+	 * Returns the rating of restaurant instance
+	 * @return int rating of the restaurant
+	 */
 	public int getRating() {
 		return rating;
 	}
 
 
-	public void setRating(int rating) throws Exception {
-		if(rating < 0 || rating > 5) throw new Exception("Invalid rating. Please enter something between 0-5");
+	public void setRating(int rating) {
+		if(rating < 0 || rating > 5) throw new InvalidRatingException("Invalid rating. Please enter something between 0-5");
 		this.rating = rating;
 	}
 

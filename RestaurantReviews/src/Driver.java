@@ -1,8 +1,12 @@
 import java.util.Scanner;
 
+import com.revature.restrev.exceptions.InvalidRatingException;
 import com.revature.restrev.models.Restaurant;
+import com.revature.restrev.util.Logger;
+import com.revature.restrev.util.Logger.LogLevel;
 
 public class Driver {
+	private static Logger logger= new Logger();
 	//public - access modifier, any other class can access it and call it 
 	// static - Object of the driver class need not be instantiated to utilize and execute this
 	//			method
@@ -43,6 +47,7 @@ public class Driver {
 				break;
 			case "2":
 				// create a restaurant
+				
 				Restaurant newRestaurant = new Restaurant();
 				System.out.println("What's the restaurant name?");
 				newRestaurant.name = scanner.nextLine();
@@ -54,7 +59,7 @@ public class Driver {
 				try {
 					newRestaurant.setRating(scanner.nextInt());
 					scanner.nextLine();
-				} catch (Exception e) {
+				} catch (InvalidRatingException e) {
 					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
 				}
@@ -66,6 +71,7 @@ public class Driver {
 				System.out.println("Goodbye cruel world...");
 				break;
 			default: 
+				logger.log(LogLevel.warning,"Invalid input");
 				System.out.println("Wrong input. try again and choose a valid option this time. or else...");
 				break;
 			}
