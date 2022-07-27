@@ -26,6 +26,8 @@ public class Restaurant {
 	public String description; 
 	
 	
+	//getters and setters are useful for adding validation logic into your fields as well
+	// as some security features by making some fields readonly or write only 
 	public int getRating() {
 		return rating;
 	}
