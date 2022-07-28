@@ -7,6 +7,7 @@ import com.revature.restrev.exceptions.*;
  * @author MarielleNolasco
  *
  */
+// putting everything in a class - encapsulation
 public class Restaurant {
 	// public - access modifier
 	// class - type you're creating 
@@ -38,6 +39,7 @@ public class Restaurant {
 	
 	//getters and setters are useful for adding validation logic into your fields as well
 	// as some security features by making some fields readonly or write only 
+	// This is an example of encapsulation
 	/**
 	 * Returns the rating of restaurant instance
 	 * @return int rating of the restaurant
@@ -71,6 +73,7 @@ public class Restaurant {
 	//methods
 	// how sysout will print out your object 
 	// this is the string version of your object
+	// example of method overriding which is a implementation of polymorphism
 	@Override
 	public String toString()
 	{
