@@ -74,9 +74,9 @@ public class DemoApplication {
 
 		//Counter
 		int totalUnitTests = 0; //Will count how many unit tests we are running
-		int totalPassedTests = 0;
-		int totalIgnoredTests = 0;
-		int totalFailedTests = 0;
+		int totalPassedTests = 0; //Counts passed unit tests
+		int totalIgnoredTests = 0; //Counts ignored unit tests
+		int totalFailedTests = 0; //Counts failed unit tests
 
 		Method[] carTestMethods = carTestClass.getDeclaredMethods();
 
