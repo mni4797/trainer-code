@@ -39,6 +39,7 @@ public class DemoApplication {
 		//We grab the actual class itself
 		Class carClass = Car.class; 
 
+		//Checked exceptions forces us to put things in try catch if they throw the exceptions
 		try {
 			//We are grabbing the field cost
 			Field costField = carClass.getDeclaredField("cost"); 
@@ -78,8 +79,10 @@ public class DemoApplication {
 			System.out.println(method.getName());
 
 			try {
+				//Grabs the return result of that method
 				boolean result = (boolean)method.invoke(carTest);
 
+				//Display Success/Failure depending on result
 				if (result) 
 				{
 					System.out.println("Success");
