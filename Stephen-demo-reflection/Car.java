@@ -5,8 +5,18 @@ public class Car {
     
     private String name;
 
+    private String[] owners;
+
     public int getCost() {
         return cost;
+    }
+
+    public String[] getOwners() {
+        return owners;
+    }
+
+    public void setOwners(String[] owners) {
+        this.owners = owners;
     }
 
     //Validation to only be able to set cost >= 0
@@ -18,7 +28,7 @@ public class Car {
         else {
             this.cost = 0;
         }
-        
+
     }
 
     public String getName() {

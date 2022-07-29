@@ -74,6 +74,9 @@ public class DemoApplication {
 
 		//Counter
 		int totalUnitTests = 0; //Will count how many unit tests we are running
+		int totalPassedTests = 0;
+		int totalIgnoredTests = 0;
+		int totalFailedTests = 0;
 
 		Method[] carTestMethods = carTestClass.getDeclaredMethods();
 
@@ -88,17 +91,18 @@ public class DemoApplication {
 				
 				//It will only run this method invoke if the metadata "enabled" in our Test annotation is set to true
 				if (test.enable()) {
-					System.out.println(method.getName());
+					System.out.print(method.getName());
 					try {
 						//Grabs the return result of that method
 						try {
 							method.invoke(carTest);
 							
-							System.out.println("Passed");
+							System.out.println("...Passed");
+							totalPassedTests++;
 						} catch (InvocationTargetException e) {
 							//TODO: handle exception
-							//This will print the message of the exception we are throwing
-							System.out.println(e.getTargetException().getMessage());
+							System.out.println("..." + e.getTargetException().getMessage());
+							totalFailedTests++;
 						}
 					} 
 					catch(Exception e)
@@ -106,13 +110,17 @@ public class DemoApplication {
 						e.printStackTrace();
 					}
 				}
+				else
+				{
+					totalIgnoredTests++;
+				}
 
 				//Will execute the method
 				
 			}
 		}
 
-		System.out.println("Total Unit Tests: " + totalUnitTests);
+		System.out.println(String.format("Total unit tests: %d\nTotal passed tests: %d\nTotal ignored tests: %d", totalUnitTests, totalPassedTests, totalIgnoredTests));
 
 	}
 

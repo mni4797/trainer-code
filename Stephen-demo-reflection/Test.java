@@ -1,7 +1,9 @@
 package com.revature.friday.lecture.demo;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 //This is an annotation to tell our custom annotation to keep this annotation during runtime
 //TDLR: we can use it in our reflection
