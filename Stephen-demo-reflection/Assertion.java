@@ -4,8 +4,21 @@ public class Assertion {
     
     //Expected is the value you want
     //Actual is the value it displayed instead
-    public static boolean Equals(int expected, int actual)
+    public static void Equals(int expected, int actual)
     {
-        return expected == actual;
+        Evaluate(expected == actual, "Equals Failed");
+    }
+
+    public static void Equals(String expected, String actual)
+    {
+        Evaluate(expected.equals(actual), "Equals Failed");
+    }
+
+    //private Evaluate will check based on a condition if it should throw an exception or not
+    private static void Evaluate(boolean condition, String message)
+    {
+        if (!condition) {
+            throw new AssertionError(message);
+        }
     }
 }

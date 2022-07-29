@@ -72,32 +72,65 @@ public class DemoApplication {
 		//Reflection selecting every method and running it
 		Class carTestClass = CarTest.class;
 
+		//Counter
+		int totalUnitTests = 0; //Will count how many unit tests we are running
+
 		Method[] carTestMethods = carTestClass.getDeclaredMethods();
 
 		//Foreach loop
 		for (Method method : carTestMethods) {
-			System.out.println(method.getName());
-
-			try {
-				//Grabs the return result of that method
-				boolean result = (boolean)method.invoke(carTest);
-
-				//Display Success/Failure depending on result
-				if (result) 
-				{
-					System.out.println("Success");
+			
+			//isAnnotationPresent will check if the method has that annotation
+			//You need it to give the actual class of the Test
+			if (method.isAnnotationPresent(Test.class)) {
+				totalUnitTests++;
+				Test test = method.getAnnotation(Test.class);
+				
+				//It will only run this method invoke if the metadata "enabled" in our Test annotation is set to true
+				if (test.enable()) {
+					System.out.println(method.getName());
+					try {
+						//Grabs the return result of that method
+						try {
+							method.invoke(carTest);
+							
+							System.out.println("Passed");
+						} catch (InvocationTargetException e) {
+							//TODO: handle exception
+							System.out.println(e.getTargetException().getMessage());
+						}
+					} 
+					catch(Exception e)
+					{
+						e.printStackTrace();
+					}
 				}
-				else 
-				{
-					System.out.println("Failure");
-				}
-			} 
-			catch(Exception e)
-			{
-				e.printStackTrace();
+
+				//Will execute the method
+				
 			}
 		}
 
+		System.out.println("Total Unit Tests: " + totalUnitTests);
+
 	}
+
+	/*
+		Activity:
+		- Create array field of a class
+		- No validation required for the array
+		- Create a new method in Assertions named arrayEquals
+			- arrayEquals will check the contents of an array with another array to see if they equal
+		- Create a unit Test on your existing test class
+		- Utilize annotation to run specific tests
+
+		Bonus:
+		- Make a counter that will check how many unit tests passes
+		- Make a counter that will check how many unit tests fails
+		- Make a counter that will check how many unit tests was ignored
+
+		Ideas:
+		- Just check junit assertion methods api documentation to add more
+	*/
 
 }
