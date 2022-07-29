@@ -97,6 +97,7 @@ public class DemoApplication {
 							System.out.println("Passed");
 						} catch (InvocationTargetException e) {
 							//TODO: handle exception
+							//This will print the message of the exception we are throwing
 							System.out.println(e.getTargetException().getMessage());
 						}
 					} 
