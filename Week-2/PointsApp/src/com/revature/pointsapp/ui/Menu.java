@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.revature.pointsapp.dl.DAO;
 import com.revature.pointsapp.dl.TeamDAO;
 import com.revature.pointsapp.models.Team;
+import com.revature.pointsapp.models.Team.PointCategories;
 import com.revature.pointsapp.util.Logger;
 import com.revature.pointsapp.util.Logger.LogLevel;
 
@@ -44,10 +45,19 @@ public class Menu {
 				System.out.println("Choose team to add points to (type in name):");
 				userInput = scanner.nextLine();
 				Team teamToUpdate = teamDao.getByName(userInput);
-				System.out.println("Enter number of points to add: ");
-				teamToUpdate.addPoints(scanner.nextInt());
+				for(PointCategories category: PointCategories.values()) {
+					System.out.println(category.toString());
+				}
+				System.out.println("Enter number of points to add or enter category: ");
+				try {
+					userInput = scanner.nextLine();
+					teamToUpdate.addPoints(Integer.parseInt(userInput));
+				} catch (NumberFormatException ex)
+				{
+					teamToUpdate.addPoints(PointCategories.valueOf(userInput));
+				} catch (Exception ex) {ex.printStackTrace();}
+				
 				teamDao.updateInstance(teamToUpdate);
-				scanner.nextLine();
 				break;
 			case "3":
 				//print out teams and their points
