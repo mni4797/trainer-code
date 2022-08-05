@@ -3,14 +3,14 @@ package com.revature.pointsapp.ui;
 import java.util.Scanner;
 
 import com.revature.pointsapp.dl.DAO;
-import com.revature.pointsapp.dl.TeamDAO;
+import com.revature.pointsapp.dl.TeamDBDAO;
 import com.revature.pointsapp.models.Team;
 import com.revature.pointsapp.models.Team.PointCategories;
 import com.revature.pointsapp.util.Logger;
 import com.revature.pointsapp.util.Logger.LogLevel;
 
 public class Menu {
-	private static DAO<Team> teamDao = new TeamDAO();
+	private static DAO<Team> teamDao = new TeamDBDAO();
 	private static Logger logger = Logger.getLogger();
 	public static void open() {
 		// for getting our user input

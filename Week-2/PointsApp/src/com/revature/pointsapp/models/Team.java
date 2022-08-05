@@ -5,7 +5,7 @@ import com.revature.pointsapp.exceptions.InvalidPointException;
 public class Team {
 	private String teamName;
 	private int totalPoints;
-	
+	private int teamId;
 	//constructor used for defining default values of fields
 	// multiple constructors = constructor overloading = method overloading = polymorphism
 	public Team(String teamName) {
@@ -22,7 +22,11 @@ public class Team {
 		// this is an example of constructor chaining
 		this("Marielle", 100);
 	}
-	
+	public Team(String teamName, int initialPoints, int id) {
+		this.teamName = teamName;
+		totalPoints = initialPoints;
+		this.teamId = id;
+	}
 	// getters for teamName and totalPoints because we want them to be readOnly
 	public String getTeamName() {
 		return teamName;
@@ -50,6 +54,10 @@ public class Team {
 		return "Team [teamName=" + teamName + ", totalPoints=" + totalPoints + "]";
 	}
 	
+	public int getTeamId() {
+		return teamId;
+	}
+
 	public enum PointCategories{
 		DEBUG_TRAINER(10), ANSWER_QUESTION(5), FINISH_ACTIVITY(20), DEBUG_ASSOC(15), LAUGHS_AT_TRAINER_JOKE(3), LAUGHS_AT_TRAINER(Integer.MIN_VALUE);
 		public final int value;
