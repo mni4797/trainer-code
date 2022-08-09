@@ -17,9 +17,16 @@ public class App
         dq.addFirst(1);
         dq.addFirst(2);
 
-        System.out.println(dq.pollFirst());
-        System.out.println(dq.pollFirst());
-        System.out.println(dq.pollFirst());
-        System.out.println(dq.pollFirst());
+        dq.addLast(10);
+        dq.addLast(1);
+        dq.addLast(2);
+        
+        System.out.println(dq.pollLast());
+        System.out.println(dq.pollLast());
+        System.out.println(dq.pollLast());
+        System.out.println(dq.pollLast());
+        System.out.println(dq.pollLast());
+        System.out.println(dq.pollLast());
+        System.out.println(dq.pollLast());
     }
 }

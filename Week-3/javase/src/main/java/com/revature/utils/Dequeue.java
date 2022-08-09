@@ -1,5 +1,7 @@
 package com.revature.utils;
 
+import com.revature.utils.Dequeue.Node;
+
 public class Dequeue<E> {
 
     private Node<E> first;
@@ -63,16 +65,48 @@ public class Dequeue<E> {
         return newNode.getData();
     }
 
-    public void addLast() {
-
+    public void addLast(E element) {
+	   	 Node newNode = new Node(element);
+	
+	     if (this.last == null) {
+	         this.last = newNode;
+	         this.first = newNode;
+	     }else {
+	         newNode.setLast(this.last);
+	
+	         this.last.setNext(newNode);
+	
+	         this.last = newNode;
+	     }
     }
 
-    public void pollLast(){
-        
+    public E pollLast(){
+	   	 if (this.last == null) 
+		        {
+		            return null;
+		        }
+		        else if (last.getLast() == null){
+		            E data = this.last.getData();
+	
+		            this.first = null;
+		            this.last = null;
+	
+		            return data;
+		        }   
+	
+		        Node<E> newNode = this.last;
+	
+		        newNode.getLast().setNext(null);
+	
+		        this.last = newNode.getLast();
+	
+		        newNode.setLast(null);
+	
+		        return newNode.getData();
     }
     
     //Node class to hold our data and pointers
-    private class Node<E>{
+    public class Node<E>{
 
         private Node<E> next;
         private Node<E> last;
