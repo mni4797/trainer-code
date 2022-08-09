@@ -15,6 +15,7 @@ public class App
 
         Object obj = new Object();
         Integer intNum = Integer.valueOf(10);
+        
         Double doubleNum = Double.valueOf(10.6);
         Float floatNum = Float.valueOf(80);
         

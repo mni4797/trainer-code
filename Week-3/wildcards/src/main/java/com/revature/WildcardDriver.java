@@ -65,7 +65,7 @@ public class WildcardDriver {
     }
 
     /**
-     * In a more detailed note, the lower and upperbound wildcard will determine the "type safetly" of the argument
+     * In a more detailed note, the lower and upperbound wildcard will determine the "type safetly" of the argument.
      * 
      * So a nicer rule of thumb to help you determine which one to use is, Upper is for read only and lower is for write only
      * 
