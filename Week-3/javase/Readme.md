@@ -42,3 +42,4 @@
 
 # Anonymous class
 * Allows you to both declare and instantiate an object from a class
+* Very useful to lower the clutter of java files in your application especially if you just need to use that class once
