@@ -1,8 +1,10 @@
 package com.revature.utils;
 
+import java.util.Iterator;
+
 import com.revature.utils.Dequeue.Node;
 
-public class Dequeue<E> {
+public class Dequeue<E> implements Iterable<E>{
 
     private Node<E> first;
     private Node<E> last;
@@ -143,5 +145,41 @@ public class Dequeue<E> {
         }
 
         
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        DequeueIterator<E> dqi = new DequeueIterator<>(first);
+        return dqi;
+    }
+
+    //We need an iterator class for our custom data structure to have the sole responsiblity to tell Java
+    //How can we iterate through it
+    public class DequeueIterator<E> implements Iterator<E> {
+
+        private Node<E> first;
+
+        public DequeueIterator(Node<E> first) {
+            this.first = first;
+        }
+
+        //It will check if there is even data left to iterate through
+        @Override
+        public boolean hasNext() {
+            return first != null;
+        }
+
+        //It will return the current element and then switch to the next one
+        @Override
+        public E next() {
+            //Grabbing the info
+            E data = first.getData();
+
+            //Switching to the next Node
+            first = first.getNext();
+
+            return data;
+        }
+
     }
 }
