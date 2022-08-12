@@ -12,5 +12,17 @@
     * Field - a member to a class
 
 ## Pre-made functional interfaces given by Java
-* Supplier Interface
+* Supplier\<T> Interface
     * Represents a function which doesn't take any parameters but returns something
+    * get() is the SAM (Single Abstract Method)
+    * It is similar to our FunctionalInterface2 except it is generic
+* Consumer\<T> Interface
+    * Represents a function which takes only a **single** parameter and doesn't return anything
+    * accept() is the SAM
+    * It is similar to our FunctionalInterface3 except it is generic
+* Predicate Interface
+    * Represents a funciton which gives a boolean result given one parameter
+    * TLDR: if you come across amking alamda that takes one parameter and returns a boolean then use a Predicate
+    * Useful for unit testing
+
+

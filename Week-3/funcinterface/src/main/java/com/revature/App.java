@@ -1,6 +1,7 @@
 package com.revature;
 
 import com.revature.models.Pokemon;
+import com.revature.models.TestingDefaultModel;
 
 /**
  * Hello world!
@@ -29,10 +30,14 @@ public class App
 
         pokeobj1.doFunction3((one, two) -> {
             one += "Shrek";
-            
+
             //Hello ShrekWorld
             System.out.println(one + two);
 
         });
+
+        TestingDefaultModel obj = new TestingDefaultModel();
+
+        obj.test();
     }
 }

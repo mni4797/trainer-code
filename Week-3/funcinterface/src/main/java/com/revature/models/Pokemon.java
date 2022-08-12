@@ -1,5 +1,7 @@
 package com.revature.models;
 
+import java.util.function.Supplier;
+
 import com.revature.utils.FunctionalInterface1;
 import com.revature.utils.FunctionalInterface2;
 import com.revature.utils.FunctionalInterface3;
