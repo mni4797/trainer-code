@@ -3,6 +3,8 @@ package com.revature;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Stream API
@@ -50,12 +52,21 @@ public class StreamsDriver {
             .filter(element -> element.startsWith("A"))
             .sorted()
             .findFirst(); // Terminal operation - end of the line of this stream api that will give a result
+        
+        //Gives the result of our optional object
+        System.out.println(filterName);
 
         for (String string : listOfNames) {
             System.out.println(string);
         }
 
-        System.out.println(filterName);
+        //Shrek, Donato, Trenton, Win, Wint, Tariq
+        //Stream api isn't just for manipulate your elements and filtering it
+        //You can also use it to customize the way your information is displayed
+        String listOfNames2 = listOfNames.stream()
+            .collect(Collectors.joining(", "));
+        
+        System.out.println(listOfNames2);
     }
 
 
