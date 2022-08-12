@@ -25,4 +25,6 @@
     * TLDR: if you come across amking alamda that takes one parameter and returns a boolean then use a Predicate
     * Useful for unit testing
 
+# Streams API
+* It is used to process a collection of objects
 
