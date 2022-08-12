@@ -2,6 +2,7 @@
 * Represents a double ended queue
 * Meaning you can add an element on the beginning of the queue or at the end of the queue
 * Ex: Your browser function to be able to go back and forward on, undo functionality of an app, or if you want a stack and a queue in one single data structure.
+* Java uses **ArrayDequeue** class to implement Dequeue data structure logic
 
 # Iterable & Iterators
 * It allows us to tell Java how we can iterate through our custom data structure we have made ourselves
@@ -19,7 +20,12 @@
 * Ex: student id, ssn, phone number
 * Numbers are just a lot easier to find information and hashing is how it transforms an object into numbers
 
-# Collision Problems
+## Hash Function
+* It puts the hash numerical representation of an object into a table structure
+* First column represents the hash code
+* The next couple of columns are the actual value that is associated with the hash code
+
+## Collision Problems
 * A problem when two or more objects have the same hash numerical representation
 * To solve, it puts the two or more objects into a linked list
     * Fun fact, each linked list is called a bucket
