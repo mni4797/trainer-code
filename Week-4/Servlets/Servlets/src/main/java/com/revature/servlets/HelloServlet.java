@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class HelloServlet extends HttpServlet{
+	//overriding httpservlet class doget which by default just returns method not supported
  @Override
  protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
  {
