@@ -55,9 +55,9 @@ It is encouraged that you provide clear documentation on how to use your framewo
 <br>
 
 ## Presentation
-- [ ] Finalized version of framework must be pushed to your team repository by the presentation date (March 18th, 2022)
+- [ ] Finalized version of framework must be pushed to your team repository by the presentation date (Aug 31st, 2022)
 - [ ] 10-15 minute live demonstration of the implemented features using a **simple demo application** to showcase the ORM's functionality
-- [ ] *You will be presenting **Friday March 18th, 2022***
+- [ ] *You will be presenting **Wednesday Aug 31st, 2022***
 
 <br>
 
