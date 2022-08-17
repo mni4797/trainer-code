@@ -27,4 +27,9 @@
 
 # Streams API
 * It is used to process a collection of objects
+* Basically a cool way to filter our collections
+
+## Terminal stream operations
+* Keyword is terminal meaning the end
+* You have a couple pre-set methods that will end the stream api and give some sort of output depending on which one you picked
 
