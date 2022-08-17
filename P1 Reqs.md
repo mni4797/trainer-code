@@ -27,7 +27,7 @@ This project will be to create a custom object relational mapping (ORM) framewor
     - Evey time you retrieve or add an object to an from the DB, you store it in this data structure in your Java program.
     - That way, when you try to query it a second time, you check the data structure *first* (your hashmap, for example) and if the object exists you can quickly retrieve it without spending time connecting to the DB and executing the same query.
 
-It is encouraged that you provide clear documentation on how to use your framework in the form of a `README.md` file example [here](https://github.com/220214-Enterprise-Angular/demos/blob/main/projects/project-1/sample-readme.md).
+It is encouraged that you provide clear documentation on how to use your framework in the form of a `README.md` file example [here](https://github.com/220725-JavaReact/trainer-code/blob/main/ORM_readme.md).
 
 <br>
 
