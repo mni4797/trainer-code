@@ -3,7 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>HelloServlets</display-name>
   <!-- Also known as the deployment descriptor this file is in charge of mappping url patterns
   to the servlets that would handle requests sent to that url
   -->
@@ -26,5 +26,12 @@
   	<servlet-name>RedirectServlet</servlet-name>
   	<url-pattern>/redirect</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+  	<servlet-name>HeroServlet</servlet-name>
+  	<servlet-class>com.revature.servlets.HeroServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>HeroServlet</servlet-name>
+  	<url-pattern>/hero</url-pattern>
+  </servlet-mapping>
 </web-app>
