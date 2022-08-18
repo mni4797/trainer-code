@@ -1,0 +1,28 @@
+<html>
+	<body>
+		<h1>Welcome to SuperVillian Servelets</h1>
+		<p>Where all minions serve their overlords~! Get it? "Serve" </p>
+		
+		<!--Direct Servlet-->
+		<!--The method attribute sets the http method/verb and the action
+			attribute sets the destination of the request
+		-->
+		<form method = "get" action = "/ServerSideRendering/direct">
+			<p>Direct Servlet, GET</p>
+			<input type = "submit" value = "Direct Text Response"/>
+		</form>
+		<form method = "post" action = "/ServerSideRendering/direct">
+			<p>Direct Servlet, POST</p>
+			<input type = "submit" value = "Direct Test Response"/>
+		</form>
+		<!--Indirect Servlet-->
+		<form method = "get" action = "/ServerSideRendering/indirect">
+			<p>InDirect Servlet, GET</p>
+			<input type = "submit" value = "InDirect Text Response"/>
+		</form>
+		<form method = "post" action = "/ServerSideRendering/indirect">
+			<p>InDirect Servlet, POST</p>
+			<input type = "submit" value = "InDirect Test Response"/>
+		</form>
+	</body>
+</html>

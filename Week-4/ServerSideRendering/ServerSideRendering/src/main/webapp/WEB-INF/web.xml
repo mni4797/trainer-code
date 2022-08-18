@@ -1,0 +1,35 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <!-- List of welcome pages -->
+  <welcome-file-list>
+  	<welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <!-- Registers a servlet class to be available for handling requests-->
+  <servlet>
+  <!--User friendly reference to servlet class-->
+  	<servlet-name>DirServ</servlet-name>
+  	<!-- Put in the full class name of servlet class here-->
+  	<servlet-class>com.revature.servlets.DirectServlet</servlet-class>
+  </servlet>
+  <!-- Mapping a servlet class to a url/route-->
+  <servlet-mapping>
+  	<servlet-name>DirServ</servlet-name>
+  	<url-pattern>/direct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  <!--User friendly reference to servlet class-->
+  	<servlet-name>inDirServ</servlet-name>
+  	<!-- Put in the full class name of servlet class here-->
+  	<servlet-class>com.revature.servlets.InDirectServlet</servlet-class>
+  </servlet>
+  <!-- Mapping a servlet class to a url/route-->
+  <servlet-mapping>
+  	<servlet-name>inDirServ</servlet-name>
+  	<url-pattern>/indirect</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
