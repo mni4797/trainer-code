@@ -33,4 +33,12 @@ public class SessionCaptureServlet extends HttpServlet{
 		}
 		out.println("</body></html>");
         }
+	@Override 
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+	        throws ServletException, IOException
+	        {
+				HttpSession session = req.getSession();
+				// clearing the session
+				session.invalidate();
+	        }
 }
