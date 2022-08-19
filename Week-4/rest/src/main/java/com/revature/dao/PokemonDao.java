@@ -1,6 +1,7 @@
 package com.revature.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -13,8 +14,26 @@ public class PokemonDao implements Dao<Pokemon>{
 
     @Override
     public Pokemon addInstance(Pokemon instance) {
-        // TODO Auto-generated method stub
-        return null;
+        String sql = "insert into Pokemon(name, pokelevel, health, damage) values(?,?,?,?) returning id";
+        try (Connection con = ConnectionUtil.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setString(1, instance.getName());
+            stmt.setInt(2, instance.getLevel());
+            stmt.setInt(3, instance.getHealth());
+            stmt.setInt(4, instance.getDamage());
+
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+
+            instance.setId(rs.getInt("id"));
+
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return instance;
     }
 
     @Override

@@ -14,5 +14,6 @@
     <servlet-name>PokemonController</servlet-name>
     <url-pattern>/pokemon</url-pattern>
     <url-pattern>/allpokemon</url-pattern>
+    <url-pattern>/addpokemon</url-pattern>
   </servlet-mapping>
 </web-app>
