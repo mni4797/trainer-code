@@ -31,5 +31,20 @@
   	<servlet-name>inDirServ</servlet-name>
   	<url-pattern>/indirect</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+  	<servlet-name>SeshServ</servlet-name>
+  	<servlet-class>com.revature.servlets.SessionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SeshServ</servlet-name>
+  	<url-pattern>/sesh</url-pattern>
+  </servlet-mapping>
+    <servlet>
+  	<servlet-name>SeshCapServ</servlet-name>
+  	<servlet-class>com.revature.servlets.SessionCaptureServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SeshCapServ</servlet-name>
+  	<url-pattern>/seshcap</url-pattern>
+  </servlet-mapping>
 </web-app>

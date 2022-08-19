@@ -24,5 +24,27 @@
 			<p>InDirect Servlet, POST</p>
 			<input type = "submit" value = "InDirect Test Response"/>
 		</form>
+		
+		<!--Session servlets-->
+		<form method = "get" action = "/ServerSideRendering/sesh">
+			<p>Session Servlet, GET</p>
+			<input type = "submit" value = "Set Megamind Free..."/>
+		</form>
+		<form method = "get" action = "/ServerSideRendering/seshcap">
+			<p>SessionCapture Servlet, GET</p>
+			<input type = "submit" value = "Obtain a villain"/>
+		</form>
+		<form method="post" action="/ServerSideRendering/sesh">
+			<p>Session Servlet POST</p>
+			<input type="text" name="myname" placeholder="villain name">
+			<input type="text" name = "mysuperpower" placeholder="villain's superpower">
+			<input type="number" name="mybounty" placeholder="villain's bounty">
+			
+			<input type="submit" value = "push a new villain to the session">
+		</form>
+		<form method = "post" action = "/ServerSideRendering/seshcap">
+			<p>SessionCapture Servlet, POST</p>
+			<input type = "submit" value = "Clear villain cache"/>
+		</form>
 	</body>
 </html>

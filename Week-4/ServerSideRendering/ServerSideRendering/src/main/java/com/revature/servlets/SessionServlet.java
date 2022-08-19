@@ -26,7 +26,22 @@ public class SessionServlet extends HttpServlet{
 			session.setAttribute("the-villain", superVillain);
 			
 			resp.getWriter().write("Megamind is on the loose");
-        }    
+        } 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+	        throws ServletException, IOException
+	        {
+				//Unpacking form elements sent via request
+				String name = req.getParameter("myname");
+				String superpower = req.getParameter("mysuperpower");
+				int bounty = Integer.valueOf(req.getParameter("mybounty"));
+				
+				SuperVillain superVillain = new SuperVillain(name, superpower, bounty);
+				HttpSession session = req.getSession();
+				session.setAttribute("the-villain", superVillain);
+				
+				resp.getWriter().write("The CUSTOM villain " +name+ " is on the loose...");
+	        }
 	    
 
 }
