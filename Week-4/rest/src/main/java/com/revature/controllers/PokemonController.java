@@ -60,7 +60,6 @@ public class PokemonController extends HttpServlet{
                     e.printStackTrace();
                 }
 
-
                 Pokemon foundPokemon = pokeserv.getPokemonById(id);
 
                 jsonString = objmap.writeValueAsString(foundPokemon);
@@ -80,7 +79,9 @@ public class PokemonController extends HttpServlet{
 
                 break;
             default:
-                resp.setStatus(405);
+                //In the event that someone tried to access get request that isn't allowed
+                //I've used the super method of doGet because that already returns a 405 method not allowed in a proper way
+                super.doGet(req, resp);
                 break;
         }
     }
@@ -115,7 +116,7 @@ public class PokemonController extends HttpServlet{
 
                 break;
             default:
-
+                super.doPost(req, resp);
                 break;
         }
     }
