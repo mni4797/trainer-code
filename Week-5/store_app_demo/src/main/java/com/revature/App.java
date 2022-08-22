@@ -30,6 +30,9 @@ public final class App {
         getCustomerInformation();
         System.out.println("Goodbye cruel world");
 
+        // ======================================================
+        // TODO: try implementing search customer functionality
+        // =====================================================
     }
 
     private static void getCustomerInformation() {
