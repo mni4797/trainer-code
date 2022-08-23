@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.DriverManager;
 
 /**
- * This meant to create a connection to the db
+ * This is meant to create a connection to the db
  */
 public class ConnectionFactory {
     // will have that one method == getConnection
@@ -38,7 +38,7 @@ public class ConnectionFactory {
         // Our way of telling JDBC to use this particular implementation
         // to interact with DB
         try {
-            System.out.println("Loading driver");
+            System.out.println("Loading driver we are in ConnectionFactory");
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -52,7 +52,7 @@ public class ConnectionFactory {
      * @return Connection to Db
      */
     public static Connection getConnection() {
-        System.out.println("executing get connection method");
+        System.out.println("executing get connection method in class ConnectionFactory");
         // Connecting to the DB
         // Goal: Connect to DB, you connect to it the same way for all
         // your DB fcnality
@@ -75,7 +75,6 @@ public class ConnectionFactory {
                 }
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return connection;

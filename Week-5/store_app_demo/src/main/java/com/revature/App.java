@@ -1,11 +1,8 @@
 package com.revature;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Scanner;
 
+import com.revature.daos.CustomerDAO;
 import com.revature.models.Customer;
 
 /**
@@ -24,6 +21,8 @@ public final class App {
 
         System.out.println("Hello World!");
         // How to add a customer:
+        // insert into customers (first_name, last_name, email, password) values
+        // ('Yazan', 'Deek', 'yazan.deek@gmail.com', 'anything')
         // 1. asking the user for customer info
         // 2. connect to the db
         // 3. add info we need for the customer
@@ -35,6 +34,37 @@ public final class App {
         // ======================================================
         // TODO: try implementing search customer functionality
         // =====================================================
+        // How to search for a customer by their email:
+        // select from customers where email = 'yazan.deek@gmail.com'
+        // 1. ask customer for their email
+        // 2. connect to the db
+        // 3. query db to find customer based on their email
+        // 4. get the customer from the db with matching email
+        // 5. Print out the customer details of the customer you found to the console
+
+        // ===Ask customer for their email===
+        // Class: App.java
+        // create method for asking to the user which customer they want to search
+        // based on the email
+        // === Query DB to find customer based on their email ===
+        // Class: CustomerDAO
+        // create method for searching customer in DB by their email
+        // parameters: string email
+        // return type: Customer object based on value of email
+        //
+
+        // ===============================================
+        // TODO create an orders table that relates to a products table
+        // and the customers table
+        // ===============================================
+
+    }
+
+    private static void searchCustomer() {
+        // TODO finish logic for this method
+        // ask user for customer email
+        // call dao to get customer with matching email
+        // logic for printing out customer info
     }
 
     /**
@@ -77,53 +107,11 @@ public final class App {
         newCustomer.setlName(lastName);
         newCustomer.setEmail(email);
         newCustomer.setPassword(password);
-        addCustomer(newCustomer);
+        CustomerDAO customerDao = new CustomerDAO();
+        customerDao.addCustomer(newCustomer);
         scanner.close();
         System.out.println("Customer successfully added");
         System.out.println("get customer info method finished executing");
     }
 
-    // pass information we're sourcing using another method
-    /**
-     * Add customer to DB by passing in values for each of the columns on the
-     * customers table
-     * 
-     * @param customer
-     */
-    private static void addCustomer(Customer customer) {
-        // ======================================================================
-        // TODO: edit parameters and logic to work with Customer object instead
-        // ======================================================================
-        System.out.println("Executing add customer method");
-        // Add to the DB info we got from end user
-        // Goal: Add a new customer
-        // How do we do insert
-        // try with resources block
-        // whatever we are instantiating in this try we close after we're done
-        try (Connection connection = getConnection()) {
-
-            // Start with String query
-            // we tell it what we want it to do, in the way we do it in sql
-            // column names must match whatever we have on table in DB
-            String query = "insert into customers (first_name, last_name, email, customer_password) values (?,?,?,?)";
-            // Statement we will be executing against the DB
-            PreparedStatement pstmt = connection.prepareStatement(query);
-
-            // Set the parameters of our query
-            // for a parameter in your query
-            // you convert that java string into a sql VARCHAR
-            pstmt.setString(1, customer.getfName());
-            // pstmt.setString(2, lastName);
-            pstmt.setString(2, customer.getlName());
-            pstmt.setString(3, customer.getEmail());
-            pstmt.setString(4, customer.getPassword());
-
-            // execute query
-            pstmt.executeUpdate();
-            System.out.println("finishing executing add customer method");
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
 }
