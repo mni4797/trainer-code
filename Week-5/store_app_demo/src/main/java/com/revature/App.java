@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import com.revature.models.Customer;
+
 /**
  * Driver class
  */
@@ -35,6 +37,9 @@ public final class App {
         // =====================================================
     }
 
+    /**
+     * UI component for interacting with end user to get customer info to be added
+     */
     private static void getCustomerInformation() {
         System.out.println("Executing get customer info method");
         // Asking the end user for customer info
@@ -63,61 +68,29 @@ public final class App {
         System.out.println("What's your password? ");
         String password = scanner.nextLine();
 
-        // ================================================================
-        // TODO combine all properties in a customer object
-        // TODO: pass customer object as parameter to addCustomer method instead
-        // ================================================================
-
-        addCustomer(firstName, lastName, email, password);
+        // creating a customer object to hold all the data I've
+        // farmed from the end user
+        Customer newCustomer = new Customer();
+        // newCustomer.getfName(); // null
+        newCustomer.setfName(firstName);
+        // newCustomer.getfName(); // whatever value firstName has
+        newCustomer.setlName(lastName);
+        newCustomer.setEmail(email);
+        newCustomer.setPassword(password);
+        addCustomer(newCustomer);
+        scanner.close();
         System.out.println("Customer successfully added");
         System.out.println("get customer info method finished executing");
     }
 
-    private static Connection getConnection() {
-        System.out.println("executing get connection method");
-        // Connecting to the DB
-        // Goal: Connect to DB, you connect to it the same way for all
-        // your DB fcnality
-        // First things first, make sure that your postgreSQL driver is
-        // included in your pom.xml file as a dependency
-        // It's the postrgreSQL driver that contains the actual logic
-        // needed by our program to work with Postgres
-        // JDBC is a collection of interfaces that describe behavior
-        // needed to work with a DB from our Java code
-        // Interfaces don't contain actaul logic, they usually contain
-        // method stubs aka they are abstract aka interfaces don't
-        // have actual logic
-        // Postgresql Driver that we add as the dependency contains the
-        // implementation details needed to work with a Postgres DB
-        // It's a postgres specific implementation of the JDBC
-
-        // First we load up the postgresql Driver
-        // Our way of telling JDBC to use this particular implementation
-        // to interact with DB
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-
-        // Set up DB credentials for my DB
-        // note that the url has a certain syntax
-        String db_url = "jdbc:postgresql://javareact-220725-trainingdb.cvtq9j4axrge.us-east-1.rds.amazonaws.com:5432/postgres";
-        String db_user = "mars";
-        String db_password = "P455w0rd";
-        try {
-            // Create a connection to the DB using creds
-            Connection connection = DriverManager.getConnection(db_url, db_user, db_password);
-            System.out.println("finishing executiong of get connection");
-            return connection;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
-
     // pass information we're sourcing using another method
-    private static void addCustomer(String firstName, String lastName, String email, String password) {
+    /**
+     * Add customer to DB by passing in values for each of the columns on the
+     * customers table
+     * 
+     * @param customer
+     */
+    private static void addCustomer(Customer customer) {
         // ======================================================================
         // TODO: edit parameters and logic to work with Customer object instead
         // ======================================================================
@@ -139,11 +112,11 @@ public final class App {
             // Set the parameters of our query
             // for a parameter in your query
             // you convert that java string into a sql VARCHAR
-            pstmt.setString(1, firstName);
+            pstmt.setString(1, customer.getfName());
             // pstmt.setString(2, lastName);
-            pstmt.setString(2, lastName);
-            pstmt.setString(3, email);
-            pstmt.setString(4, password);
+            pstmt.setString(2, customer.getlName());
+            pstmt.setString(3, customer.getEmail());
+            pstmt.setString(4, customer.getPassword());
 
             // execute query
             pstmt.executeUpdate();
