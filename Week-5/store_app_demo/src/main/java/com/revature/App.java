@@ -9,6 +9,10 @@ import com.revature.models.Customer;
  * Driver class
  */
 public final class App {
+    // Giving the scanner class wide scope so we can use it in other methods
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final CustomerDAO customerDao = new CustomerDAO();
+
     private App() {
     }
 
@@ -28,11 +32,14 @@ public final class App {
         // 3. add info we need for the customer
 
         // ========= Add Customer Feature =============
-        getCustomerInformation();
+        // getCustomerInformation();
+
+        // =========== Search Customer Feature =============
+        searchCustomer();
         System.out.println("Goodbye cruel world");
 
         // ======================================================
-        // TODO: try implementing search customer functionality
+        // Implementing search customer functionality
         // =====================================================
         // How to search for a customer by their email:
         // select from customers where email = 'yazan.deek@gmail.com'
@@ -63,8 +70,16 @@ public final class App {
     private static void searchCustomer() {
         // TODO finish logic for this method
         // ask user for customer email
+        System.out.println("Please enter email of unknown customer: ");
+        String email = scanner.nextLine();
         // call dao to get customer with matching email
+        Customer filteredCustomer = customerDao.getCustomerByEmail(email);
         // logic for printing out customer info
+        if (filteredCustomer == null)
+            System.out.println("No customer found with that email :<");
+        else {
+            System.out.println(filteredCustomer);
+        }
     }
 
     /**
@@ -83,7 +98,6 @@ public final class App {
         // For our particular program, read info from console
         // System.in represents the input source
         // We're saying that the scanner is reading the console
-        Scanner scanner = new Scanner(System.in);
 
         // getting the customer information
         System.out.println("What's your first name? ");
@@ -107,7 +121,7 @@ public final class App {
         newCustomer.setlName(lastName);
         newCustomer.setEmail(email);
         newCustomer.setPassword(password);
-        CustomerDAO customerDao = new CustomerDAO();
+
         customerDao.addCustomer(newCustomer);
         scanner.close();
         System.out.println("Customer successfully added");

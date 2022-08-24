@@ -33,6 +33,14 @@ public class Customer {
         super();
     }
 
+    public Customer(int id, String fName, String lName, String email, String password) {
+        this.id = id;
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
+        this.password = password;
+    }
+
     // ******************Methods*****************************
     // =================Getters=============================
     // getter gets info about a private field and returns it
@@ -77,4 +85,11 @@ public class Customer {
     public void setlName(String lName) {
         this.lName = lName;
     }
+
+    @Override
+    public String toString() {
+        return "Customer [email=" + email + ", fName=" + fName + ", id=" + id + ", lName=" + lName + ", password="
+                + password + "]";
+    }
+
 }

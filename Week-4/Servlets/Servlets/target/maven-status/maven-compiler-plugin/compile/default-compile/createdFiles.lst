@@ -1,0 +1,4 @@
+com\revature\models\Hero.class
+com\revature\servlets\HeroServlet.class
+com\revature\servlets\HelloServlet.class
+com\revature\servlets\RedirectServlet.class

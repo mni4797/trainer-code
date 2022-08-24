@@ -2,6 +2,7 @@ package com.revature.daos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.revature.models.Customer;
@@ -92,6 +93,22 @@ public class CustomerDAO {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public Customer getCustomerByEmail(String email) {
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            String query = "select * from customers where email = ?";
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                return new Customer(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"),
+                        rs.getString("email"), rs.getString("customer_password"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
 }
