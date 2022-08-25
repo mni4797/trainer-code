@@ -1,9 +1,15 @@
 package com.revature;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.revature.daos.CustomerDAO;
+import com.revature.daos.OrderDAO;
+import com.revature.daos.ProductDAO;
 import com.revature.models.Customer;
+import com.revature.models.Order;
+import com.revature.models.Product;
 
 /**
  * Driver class
@@ -12,6 +18,8 @@ public final class App {
     // Giving the scanner class wide scope so we can use it in other methods
     private static final Scanner scanner = new Scanner(System.in);
     private static final CustomerDAO customerDao = new CustomerDAO();
+    private static final ProductDAO productDao = new ProductDAO();
+    private static final OrderDAO orderDao = new OrderDAO();
 
     private App() {
     }
@@ -35,7 +43,13 @@ public final class App {
         // getCustomerInformation();
 
         // =========== Search Customer Feature =============
-        searchCustomer();
+        // searchCustomer();
+
+        // ============ Show products ==========
+        // showProducts();
+
+        // ============ Shop ==================
+        shop();
         System.out.println("Goodbye cruel world");
 
         // ======================================================
@@ -61,16 +75,100 @@ public final class App {
         //
 
         // ===============================================
-        // TODO create an orders table that relates to a products table
-        // and the customers table
+        // Placing order functionality
         // ===============================================
+        // Search customer
+        // list of product,
+        // select products to add to cart,
+        // do the checkout
 
     }
 
-    private static void searchCustomer() {
-        // TODO finish logic for this method
+    // implementation of order functionality
+    private static void shop() {
+        // Search for customer to shop for
+        Customer shoppingCustomer = searchCustomer();
+
+        // cart represents the products we want to buy
+        // TODO edit the cart so that it holds products and quantity
+        // instead of just products
+        List<Product> cart = new ArrayList<>();
+        // inventory represents the products in our DB that is on sale
+        List<Product> inventory = productDao.getAllProducts();
+        // userInput represents the action user chooses
+        String userInput = "";
+        while (userInput != "checkout") {
+            // show products
+            // based off of the indexing of lists wherein the first element has an index of
+            // 0
+            int index = 0;
+            for (Product product : inventory) {
+                // use index to identify the location of a product object in the list
+                System.out.println(index + " " + product.getName() + "\t" + product.getPrice());
+                index++;
+            }
+            // TODO edit this out to also ask the end user for quantity
+            System.out.println("Would you like to add a product to cart?");
+            System.out.println("Enter index # if yes if not enter -1: ");
+            // add products to cart
+            userInput = scanner.nextLine();
+            try {
+                // with the end user's chosen product, use it's index to indentify which
+                // product to add to cart
+                int productIndex = Integer.parseInt(userInput);
+                if (productIndex > -1)
+                    // TODO edit this out to include the quantity the end user wanted
+                    cart.add(inventory.get(productIndex));
+                else
+                    userInput = "checkout";
+            } catch (NumberFormatException ex) {
+                ex.printStackTrace();
+            } catch (IndexOutOfBoundsException ex) {
+                System.out.println("Product out of bounds");
+            }
+        }
+        // variable to store orderTotal
+        double total = 0;
+        for (Product product : cart) {
+            System.out.println(product.getName() + "\t" + product.getPrice());
+            total += product.getPrice();
+        }
+        // print total
+        System.out.println("Total: " + total);
+        // checkout the products
+        Order newOrder = new Order();
+        newOrder.setCustomer_id(shoppingCustomer.getId());
+        newOrder.setTotal(total);
+        newOrder.setLineItems(cart);
+        orderDao.addOrder(newOrder);
+
+    }
+
+    private static void showProducts() {
+        System.out.println("List of products");
+        // create a product DAO object
+
+        // productDao.getAllProducts returns a list of products
+        // "catching" the list of products the DAO is returning
+        List<Product> productsFromDB = productDao.getAllProducts();
+        // foreach loop => perfect for iterating over a list
+        for (Product product : productsFromDB) {
+            System.out.println(product);
+        }
+        // The above foreach loop is equivalent to the below for loop
+        // for (int i = 0; i < productsFromDB.size(); i++) {
+        // Product product = productsFromDB.get(i);
+        // System.out.println(product);
+        // }
+
+    }
+
+    /*
+     * returns the Customer object found
+     */
+    private static Customer searchCustomer() {
         // ask user for customer email
-        System.out.println("Please enter email of unknown customer: ");
+        System.out.println("Please enter email of customer: ");
         String email = scanner.nextLine();
         // call dao to get customer with matching email
         Customer filteredCustomer = customerDao.getCustomerByEmail(email);
@@ -80,6 +178,7 @@ public final class App {
         else {
             System.out.println(filteredCustomer);
         }
+        return filteredCustomer;
     }
 
     /**
