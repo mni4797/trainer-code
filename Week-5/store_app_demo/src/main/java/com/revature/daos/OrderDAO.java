@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.revature.models.LineItem;
 import com.revature.models.Order;
 import com.revature.models.Product;
 import com.revature.utils.dao.ConnectionFactory;
@@ -27,18 +28,20 @@ public class OrderDAO {
             int order_id = rs.getInt(1);
             // insert into line_items (product_id, order_id, quantity)
             // values (1,1,2), (3,1,1);
-            for (Product product : order.getLineItems()) {
+            // for each Product object in our Order object's
+            // lineItems field
+            for (LineItem lineItem : order.getLineItems()) {
+                // get the product from the line item
+                Product product = lineItem.getProduct();
                 query = "insert into line_items (product_id, order_id, quantity) values (?,?,?)";
                 pstmt = connection.prepareStatement(query);
                 // setting the product id of the product we wanted to buy
+                // This product id was sponsored by line 35
                 pstmt.setInt(1, product.getId());
                 // setting the order id
                 pstmt.setInt(2, order_id);
-                // setting the quantity, because our line items have no quantity yet, we default
-                // to 1
-                // TODO edit this default 1 value to the actual quantity that the end user would
-                // like to purchase
-                pstmt.setInt(3, 1);
+                // setting the quantity value
+                pstmt.setInt(3, lineItem.getQuantity());
                 pstmt.executeUpdate();
             }
 

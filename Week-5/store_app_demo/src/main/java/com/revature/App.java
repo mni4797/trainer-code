@@ -8,6 +8,7 @@ import com.revature.daos.CustomerDAO;
 import com.revature.daos.OrderDAO;
 import com.revature.daos.ProductDAO;
 import com.revature.models.Customer;
+import com.revature.models.LineItem;
 import com.revature.models.Order;
 import com.revature.models.Product;
 
@@ -90,9 +91,10 @@ public final class App {
         Customer shoppingCustomer = searchCustomer();
 
         // cart represents the products we want to buy
-        // TODO edit the cart so that it holds products and quantity
+        // edit the cart so that it holds products and quantity
+        // (aka lineItems)
         // instead of just products
-        List<Product> cart = new ArrayList<>();
+        List<LineItem> cart = new ArrayList<>();
         // inventory represents the products in our DB that is on sale
         List<Product> inventory = productDao.getAllProducts();
         // userInput represents the action user chooses
@@ -107,7 +109,7 @@ public final class App {
                 System.out.println(index + " " + product.getName() + "\t" + product.getPrice());
                 index++;
             }
-            // TODO edit this out to also ask the end user for quantity
+
             System.out.println("Would you like to add a product to cart?");
             System.out.println("Enter index # if yes if not enter -1: ");
             // add products to cart
@@ -116,10 +118,26 @@ public final class App {
                 // with the end user's chosen product, use it's index to indentify which
                 // product to add to cart
                 int productIndex = Integer.parseInt(userInput);
-                if (productIndex > -1)
-                    // TODO edit this out to include the quantity the end user wanted
-                    cart.add(inventory.get(productIndex));
-                else
+                if (productIndex > -1) {
+                    Product add2Cart = inventory.get(productIndex);
+                    // How to ask end user for amount of product
+                    System.out.println("How many would like of this item?");
+                    int quantity = scanner.nextInt();
+                    // I need to move the scanner cursor to the next line
+                    // because nextInt() doesn't do that
+                    // and my program will behave weirdly otherwise
+                    scanner.nextLine();
+                    // Create lineItem object to hold the info of the product we want
+                    // and how much of that product we want
+                    LineItem lineItem = new LineItem();
+                    // Note that the product and quantity
+                    // are properties of our lineItem class
+                    // set how much of that product we are buying
+                    lineItem.setQuantity(quantity);
+                    // set which product we are buying
+                    lineItem.setProduct(add2Cart);
+                    cart.add(lineItem);
+                } else
                     userInput = "checkout";
             } catch (NumberFormatException ex) {
                 ex.printStackTrace();
@@ -129,9 +147,23 @@ public final class App {
         }
         // variable to store orderTotal
         double total = 0;
-        for (Product product : cart) {
-            System.out.println(product.getName() + "\t" + product.getPrice());
-            total += product.getPrice();
+        for (LineItem lineItem : cart) {
+            // to access properties of an object that belongs to another object
+            // EX: accessing the name of the Product object that belongs
+            // to a line item object, you just have to chain your
+            // dot (.) operators
+
+            // Let's unpack lineItem.getProduct().getName()
+            // lineItem.getProduct() returns a Product object
+            // we know that the product object has a name property
+            // To get the name property of a product object we invoke
+            // the getName()
+            // lineItem.getProduct() => some Product object
+            // some Product object.getName() => returns product name
+            Product product = lineItem.getProduct();
+            System.out.println(product.getName() + "\t" + product.getPrice() + "\t" + lineItem.getQuantity());
+            // Total = how much a product multiplied by the price of the product
+            total += product.getPrice() * lineItem.getQuantity();
         }
         // print total
         System.out.println("Total: " + total);

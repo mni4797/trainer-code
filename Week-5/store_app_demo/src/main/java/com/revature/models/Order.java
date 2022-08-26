@@ -8,13 +8,13 @@ public class Order {
     private double total;
     // TODO edit this property change the Product POJO to some
     // other POJO that pairs products and their quanties together
-    private List<Product> lineItems;
+    private List<LineItem> lineItems;
 
     public Order() {
         super();
     }
 
-    public Order(int id, int customer_id, double total, List<Product> lineItems) {
+    public Order(int id, int customer_id, double total, List<LineItem> lineItems) {
         this.id = id;
         this.customer_id = customer_id;
         this.total = total;
@@ -51,11 +51,11 @@ public class Order {
         this.total = total;
     }
 
-    public List<Product> getLineItems() {
+    public List<LineItem> getLineItems() {
         return lineItems;
     }
 
-    public void setLineItems(List<Product> lineItems) {
+    public void setLineItems(List<LineItem> lineItems) {
         this.lineItems = lineItems;
     }
 
