@@ -37,11 +37,7 @@ values (1,
 
 
 insert into line_items (product_id, order_id, quantity)
-values (1,
-        1,
-        2), (3,
-             1,
-             1);
+values (1, 1, 2), (3, 1, 1);
 
 -- retrieve Stephen's order history
 
