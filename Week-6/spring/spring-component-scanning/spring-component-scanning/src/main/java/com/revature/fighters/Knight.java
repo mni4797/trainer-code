@@ -1,11 +1,14 @@
 package com.revature.fighters;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.revature.trainings.Training;
 
-@Component
+@Component("kFighter")
+@Scope("prototype")
 public class Knight implements Fighter {
     @Value("Dark Knight")
     private String name;
@@ -17,7 +20,7 @@ public class Knight implements Fighter {
     // with constructor injection, if spring is managing a bean
     // of the type that an object is dependent on
     // it automagically injects that dependency
-    public Knight(Training training) {
+    public Knight(@Qualifier("springTraining") Training training) {
         this.training = training;
     }
 

@@ -22,12 +22,17 @@ public final class App {
         System.out.println("Creating beans container");
         try (AnnotationConfigApplicationContext container = new AnnotationConfigApplicationContext(AppConfig.class)) {
             System.out.println("Bean container created");
-            Fighter knight = container.getBean(Fighter.class);
+            Fighter knight = container.getBean("kFighter", Fighter.class);
             knight.goToTraining();
             System.out.println(knight.getName());
             System.out.println(knight.getWeapon());
+
+            Fighter zFighter = container.getBean("zFighter", Fighter.class);
+            zFighter.goToTraining();
+            System.out.println(zFighter.getName());
+            System.out.println(zFighter.getWeapon());
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
     }
 }
