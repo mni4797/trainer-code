@@ -126,6 +126,12 @@ Spring Boot provides the spring-boot-starter-web library for developing web appl
   - Used when creating RESTful APIs using Spring MVC
   - An aggregate annotation that implies `@Controller` on the class level and `@ResponseBody` on each controller method
 
+# Swagger
+
+Useful tool to document and test your API. With Spring we use Springdoc to integrate swagger with our code.
+
+[Springdoc Documentation](https://springdoc.org/)
+
 # Application.yml
 
 Yaml format for application properties.

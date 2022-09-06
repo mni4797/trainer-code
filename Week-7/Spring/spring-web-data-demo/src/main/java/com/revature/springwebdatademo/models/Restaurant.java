@@ -41,6 +41,10 @@ public class Restaurant {
     public Restaurant() {
     }
 
+    public Restaurant(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
