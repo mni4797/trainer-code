@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    password: P455w0rd
+    url: jdbc:postgresql://javareact-220725-trainingdb.cvtq9j4axrge.us-east-1.rds.amazonaws.com:5432/restrevdb
+    username: mars
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 5000
