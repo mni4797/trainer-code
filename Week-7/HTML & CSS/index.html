@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- head, heading, header -->
+<!-- This used to add metadata information to your HTML doc -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML and CSS</title>
+    
+    <link rel="stylesheet" href="index.css">
+
+    <style>
+        
+        /* This is a id selector */
+        #add-red {
+            color:red;
+        }
+        
+        /* This is a class selector */
+        .add-blue {
+            color:blue;
+        }
+        
+        /* This is a element selector */
+        p {
+            color:blueviolet;
+        }
+    </style>
+
+</head>
+<body>
+    <header>This is a header a semantic tag that is all about grouping a bunch of navigational links together</header>
+
+    <div>Hello World</div>
+
+    <!-- Heading tag is used to display titles or subtitles -->
+    <h1>Introduction to HTML</h1>
+    <h6>Tiny Heading</h6>
+
+    <!-- Div tags are just a way to group certain elements together and it is used for organization -->
+    <h3>Div & Span</h3>
+    <div>
+        Divs are generic block element that is used to separate/group sections in an HTML Document
+        <div>
+            You can a have nested div
+        </div>
+    </div>
+
+    <div>
+        They are block elements so the next div will be on the next line
+    </div>
+
+    <span>This is a inline element</span>
+    <span>This will stay on the very same line</span>
+
+    <h3>Creating a table in HTML</h3>
+
+    <!-- Table semantic tag is used to group a bunch of elements that is responsible for display a table in our website -->
+    <table>
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Contact</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Stark Industries</td>
+                <td>Elon Musk</td>
+                <td>USA</td>
+            </tr>
+
+            <tr>
+                <td>Some company</td>
+                <td>Body</td>
+                <td>Told me</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Paragraph tag -->
+    <p>This element is used to create long text in your website that is used to describe something.</p>
+
+    <h3>List Section</h3>
+    <h4>Ordered List</h4>
+    <ol>
+        <li>Denoted by ol</li>
+        <li>The sequence in which you put information matters</li>
+        <li>Useful for steps</li>
+        <ul>
+            <li>Order doesn't matter</li>
+            <li>Another List</li>
+        </ul>
+    </ol>
+
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/132.png">
+
+    <h1>Introduction to CSS</h1>
+
+    <div>
+        <p id="add-red" class ="add-blue" style="color:deeppink">This is an example of id selector</p>
+        <p class="add-blue">This is an example of class selector</p>
+        <p class="add-blue">This is an example of class selector</p>
+        <p class="add-blue">This is an example of class selector</p>
+        <p>This is an example of element selector</p>
+        <p style="color:deeppink">This is an example of inline CSS</p>
+
+    </div>
+
+    <h1 class="w3">Learn to Code</h1>
+
+    
+</body>
+</html>

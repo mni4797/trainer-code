@@ -2,6 +2,8 @@ package com.revature.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.revature.dao.Dao;
 import com.revature.dao.PokemonDao;
@@ -44,6 +46,8 @@ public class PokemonService {
         Optional<Pokemon> foundPoke = listOfPokemon.stream()
             .filter(pokemon -> pokemon.getId() == id)
             .findFirst();
+
+        foundPoke.get().setName(foundPoke.get().getName().toUpperCase());
             
         if (foundPoke.isPresent()) {
             return foundPoke.get();

@@ -36,7 +36,9 @@ public class ConnectionUtil {
             Class.forName("org.postgresql.Driver");
             
             //I've loaded the property file from my resource folder for my prop object to use
-            prop.load(new FileReader("C:\\Users\\Stephen - Work\\Documents\\Revature\\Java\\trainer-code\\Week-4\\rest\\src\\main\\resources\\database.properties"));
+            //We have to change from a hard coded path of the database.properties into an included method called getResourceAsStream()
+            //  to dynamically point to our resources folder and pick a file there
+            prop.load(ConnectionUtil.class.getResourceAsStream("/database.properties"));
 
             url = prop.getProperty("url");
             user = prop.getProperty("user");
