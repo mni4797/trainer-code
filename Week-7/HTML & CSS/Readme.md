@@ -54,4 +54,10 @@
 * Internal CSS
     * Applies CSS by using the style tag inside a HTML doc
     * Used to apply multiple CSS to multiple elements
-* 
+* External CSS
+    * Creating an external .css file to apply css to multiple HTML docs
+    * HTML doc must use the link tag to refer to the external css
+    * Used to apply a universal theme to your website
+
+## CSS Box Model
+* A way to enlarge/separate/resize your element into the right size and spacing that you want
