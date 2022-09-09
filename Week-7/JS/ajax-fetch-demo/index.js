@@ -53,5 +53,36 @@ function getPokemon() {
             document.querySelector('#needToFindPokemon').value = '';
         }
     }
+}
 
+function getDigimon() {
+    let digimon2Find = document.querySelector('#needToFindDigimon').value;
+    // fetch function by defualt with just one param you send a get request to the url
+    // to edit the method, add any request headers, add additional parameters
+    // check documentation for more details
+    fetch(`https://digimon-api.vercel.app/api/digimon/name/${digimon2Find}`)// returns a promise
+        .then(result => {
+            if (result.ok) {
+                return result.json();
+            } else {
+                throw new Error("Digimon not found");
+            }
+        })
+        // this then defines what happens when a promise is fulfilled ie a response was given to us from the server
+        // the .json() function that returns the response body and maps it to a JS object
+        // returns another promise
+        .then(digimon => {
+            document.querySelector('.foundDigimon img').setAttribute('src', digimon[0].img);
+            document.querySelectorAll('.foundDigimon caption').forEach((element) => element.remove());
+            let caption = document.createElement('caption');
+            caption.appendChild(document.createTextNode(digimon[0].name));
+            document.querySelector('.foundDigimon').appendChild(caption);
+            document.querySelector('#needToFindDigimon').value = '';
+        }).catch(error => {
+            document.querySelectorAll('.foundDigimon caption').forEach((element) => element.remove());
+            let caption = document.createElement('caption');
+            caption.appendChild(document.createTextNode(error.message));
+            document.querySelector('.foundDigimon').appendChild(caption);
+            document.querySelector('#needToFindDigimon').value = '';
+        })
 }
