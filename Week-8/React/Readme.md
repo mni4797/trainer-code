@@ -24,4 +24,6 @@
 ## Different important files in React
 * Package.json - used to find dependencies for the React app
 * tsconfig.json - Used to configure our transpilation process
-* node_modules - Used to store dependencies for your React app
+* node_modules - Used to store dependencies for your React app.
+* Index.tsx - Your main entry point for your components. Interacts with your Index.html to append your components to
+* 
