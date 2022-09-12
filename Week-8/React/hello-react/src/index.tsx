@@ -4,11 +4,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+/*
+  Index.tsx is your main entry point for components in your program
+  Anything in here is what will be displayed
+
+  Since React is SPA, this is going to the main HTML page that will be served first
+
+*/
+
+//It will grab the div element in your index.html and put your components there using JS
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+//This section is responsible for serving your actual components
 root.render(
   <React.StrictMode>
+    <App />
+    <App />
+    <App />
     <App />
   </React.StrictMode>
 );
