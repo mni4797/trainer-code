@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 
 import PokemonBox from './components/PokemonBox/PokemonBox';
+import PokemonList from './components/PokemonList/PokemonList';
 
 /*
   Index.tsx is your main entry point for components in your program
@@ -23,8 +24,8 @@ const root = ReactDOM.createRoot(
 //This section is responsible for serving your actual components
 root.render(
   <React.StrictMode>
-    <App />
-    
+    {/* <App /> */}
+    <PokemonList />
   </React.StrictMode>
 );
 
