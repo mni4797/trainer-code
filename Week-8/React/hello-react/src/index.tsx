@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+import PokemonBox from './components/PokemonBox/PokemonBox';
+
 /*
   Index.tsx is your main entry point for components in your program
   Anything in here is what will be displayed
@@ -21,9 +24,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App />
-    <App />
-    <App />
-    <App />
+    
   </React.StrictMode>
 );
 
