@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.revature.springwebdatademo.services.RestaurantService;
 
 @SpringBootApplication
-public class SpringWebDataDemoApplication implements CommandLineRunner {
+public class SpringWebDataDemoApplication {
 	@Autowired
 	private RestaurantService rService;
 
@@ -16,12 +19,19 @@ public class SpringWebDataDemoApplication implements CommandLineRunner {
 		SpringApplication.run(SpringWebDataDemoApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		System.out.println(rService.getAllRestaurants());
-		System.out.println(rService.getRestaurantById(5).get());
-		System.out.println(rService.getRestaurantByName("Basilisk"));
+	// to configure CORS, just copy paste the below code
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				// addMapping is for umbrella URLS
+				// allowed origins is frontend url
+				// For all our endpoints API side, respond to requests sent localhost:3000
+				registry.addMapping("/**").allowedOrigins("http://localhost:3000", "http://localhost:3001");
+				//
+			}
+		};
 	}
 
 }
