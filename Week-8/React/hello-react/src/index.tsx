@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-
 import PokemonBox from './components/PokemonBox/PokemonBox';
 import PokemonList from './components/PokemonList/PokemonList';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NavBar from './shared/NavBar/NavBar';
 
 /*
   Index.tsx is your main entry point for components in your program
@@ -25,7 +25,18 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <PokemonList />
+    {/* <PokemonList /> */}
+    <BrowserRouter>
+      
+      <NavBar />
+
+      <Routes>
+        <Route path="/" element={<App/>}/>
+        <Route path="/pokeList" element={<PokemonList />}/>
+      </Routes>
+
+      {/* You would put the footer here */}
+    </BrowserRouter>
   </React.StrictMode>
 );
 

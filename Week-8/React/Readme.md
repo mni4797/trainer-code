@@ -98,3 +98,39 @@
 * It is important for React so it can uniquely identify that specific HTML element in the event that it needs to dynamically change it
 * It is massive optimization hit if you don't add keys when you map things in React
 * Just another point as to why we add unique identifiers in pretty much everything in our database
+
+# React Routing
+* A React library that allows us to switch between components as if we were switching pages in your traditional routing in HTML
+* Good idea to establish the routing component in index.tsx, our main entry point for our components
+* It is an extra dependency, we have to mess with our NPM once again
+    * `npm install react-router-dom@6`
+* Documentation: https://reactrouter.com/en/main
+
+# Axios
+* A way to communcate with an external API or your very own
+* It is more abstracted form of using your normal AJAX in vanilla JS
+    * It uses XMLHTTPRequest at the back
+* Can by added by using `npm install axios`
+
+## Why use Axios over Fetch?
+* It can automatically convert your JSOn into JS object to start using it
+* Protection over XSRF (Cross Site Request Forgery)
+* Easy way to make a progress bar
+
+## useEffect Hook
+* To fully utilize grabbing information through the network (via API) you need to use this hook
+* Essentially, it will run that function whenever an "update" gets detected by React
+* It will also run when you first initializes your component (probably the most use case o fit)
+* One of those "updates", whenever the DOM changes
+
+# React State Management
+* React will pass state information from one component to another.
+* The two component must be related to each other (child to parent relationship)
+* You can bubble up the state information using a bunch of callback functions
+* You can drilling down the state information using a bunch of props
+
+## Lifting State
+* This is when you "lifted" a state to a higher component so that all of the child component can share a universal value
+    * You can think of it as having singleton variable for all the child components
+* Child to Parent communication is needed for lifting states
+* **You must put the state to the common ancestry of all the child components (Their parent basically)**

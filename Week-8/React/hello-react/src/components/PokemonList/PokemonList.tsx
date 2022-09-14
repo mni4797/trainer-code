@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { IPokemon } from "../../models/Pokemon";
 import PokemonBox from "../PokemonBox/PokemonBox";
 import "./PokemonList.css";
 
 function PokemonList() {
+
+    //Moved the state to the common ancestry
+    const [counter, setCounter] = useState(0);
 
     //This will hold whatever the user is typing in our website
     const [newPokemon, setNewPokemon] = useState<IPokemon>({
@@ -15,30 +19,24 @@ function PokemonList() {
     });
 
     //This will be a list of IPokemon[]
-    const [listOfPoke, setListOfPoke] = useState<IPokemon[]>([
-        {
-          damage: 80,
-          health: 100,
-          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/63.png",
-          level: 20,
-          name: "Abra"
-        },
-        {
-          damage: 100,
-          health: 20,
-          img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png",
-          level: 12,
-          name: "Ekans"
-        },
-        {
-            damage: 123,
-            health: 548,
-            img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png",
-            level: 10,
-            name: "Moltres"
-          }
-      ]);
+    const [listOfPoke, setListOfPoke] = useState<IPokemon[]>([]);
 
+    /*
+        Do note that useEffect will execute the callback function you gave when it detects a change
+        One of these changes is whenever a state changes
+    */
+    useEffect(() => {
+        axios.get<IPokemon[]>("http://smresteb-env.eba-u2i9uhvs.us-east-1.elasticbeanstalk.com/rest/allpokemon")
+            .then( response => {
+                console.log(response.data);
+                setListOfPoke(response.data);
+            })
+    }, []) //Empty array as the second parameter will prevent an infinite loop of forever calling the backend
+    
+    function handleButtonClick() {
+        console.log("Detected click from a component!");
+        setCounter(counter + 1);
+    }
 
     /*
         Step by step process to make React forms work in React
@@ -96,6 +94,12 @@ function PokemonList() {
         setListOfPoke([...listOfPoke, newPokemon]);
 
         console.log(listOfPoke);
+
+        //Logic to do a post request and add the pokemon object
+        axios.post<IPokemon>("http://smresteb-env.eba-u2i9uhvs.us-east-1.elasticbeanstalk.com/rest/addpokemon",newPokemon)
+            .then(response => {
+                console.log(response);
+            });
     }
 
     return <div>
@@ -120,7 +124,7 @@ function PokemonList() {
             <div className="list-grid">
                 {
                     listOfPoke.map((pokemon) => {
-                        return <PokemonBox key={pokemon.name} {...pokemon}/>
+                        return <PokemonBox key={pokemon.id} {...pokemon} counter={counter} onButtonClick={handleButtonClick}/>
                     })
                 }
             </div>
