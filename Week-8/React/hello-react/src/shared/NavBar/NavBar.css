@@ -6,7 +6,7 @@
     background-color: rgb(238, 230, 204);
 }
 
-.flex > * {
+.flex > *:not(p) {
     padding: 1rem;
 
     text-decoration: none;
@@ -16,7 +16,7 @@
     animation: fade-out 1s forwards;
 }
 
-.flex > *:hover {
+.flex > *:hover:not(p) {
     background-color: rgb(194, 188, 169);
     border-radius: 10px;
 

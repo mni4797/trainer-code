@@ -134,3 +134,11 @@
     * You can think of it as having singleton variable for all the child components
 * Child to Parent communication is needed for lifting states
 * **You must put the state to the common ancestry of all the child components (Their parent basically)**
+
+# React Redux
+* A library that changes the game with state management
+* Essentially, this is important if you plan on having a universal state that you need to share across multiple components anywhere
+    * Ex: User Creds
+* For installation: `npm install @reduxjs/toolkit react-redux`
+
+## PUT AWESOME IMAGE HERE PLS

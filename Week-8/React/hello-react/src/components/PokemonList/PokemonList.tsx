@@ -1,10 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { IPokemon } from "../../models/Pokemon";
+import { useAppSelector } from "../../shared/Redux/hooks";
+import { selectTrainer } from "../Login/TrainerSlice";
 import PokemonBox from "../PokemonBox/PokemonBox";
 import "./PokemonList.css";
 
 function PokemonList() {
+
+    const trainer = useAppSelector(selectTrainer);
 
     //Moved the state to the common ancestry
     const [counter, setCounter] = useState(0);
@@ -19,19 +23,21 @@ function PokemonList() {
     });
 
     //This will be a list of IPokemon[]
-    const [listOfPoke, setListOfPoke] = useState<IPokemon[]>([]);
+    const [listOfPoke, setListOfPoke] = useState<IPokemon[]>(trainer.listOfPokemon);
 
     /*
         Do note that useEffect will execute the callback function you gave when it detects a change
         One of these changes is whenever a state changes
     */
-    useEffect(() => {
-        axios.get<IPokemon[]>("http://smresteb-env.eba-u2i9uhvs.us-east-1.elasticbeanstalk.com/rest/allpokemon")
-            .then( response => {
-                console.log(response.data);
-                setListOfPoke(response.data);
-            })
-    }, []) //Empty array as the second parameter will prevent an infinite loop of forever calling the backend
+    // useEffect(() => {
+    //     // axios.get<IPokemon[]>("http://smresteb-env.eba-u2i9uhvs.us-east-1.elasticbeanstalk.com/rest/allpokemon")
+    //     //     .then( response => {
+    //     //         console.log(response.data);
+    //     //         setListOfPoke(response.data);
+    //     //     })
+
+
+    // }, []) //Empty array as the second parameter will prevent an infinite loop of forever calling the backend
     
     function handleButtonClick() {
         console.log("Detected click from a component!");

@@ -7,6 +7,9 @@ import PokemonBox from './components/PokemonBox/PokemonBox';
 import PokemonList from './components/PokemonList/PokemonList';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NavBar from './shared/NavBar/NavBar';
+import Login from './components/Login/Login';
+import { Provider } from 'react-redux';
+import { store } from './shared/Redux/store';
 
 /*
   Index.tsx is your main entry point for components in your program
@@ -24,19 +27,23 @@ const root = ReactDOM.createRoot(
 //This section is responsible for serving your actual components
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
-    {/* <PokemonList /> */}
-    <BrowserRouter>
-      
-      <NavBar />
+    {/* Provider will give information from your store to everything inside of it */}
+    <Provider store={store}>
 
-      <Routes>
-        <Route path="/" element={<App/>}/>
-        <Route path="/pokeList" element={<PokemonList />}/>
-      </Routes>
+      {/* BrowserRouter sets up routing */}
+      <BrowserRouter>
+        
+        <NavBar />
+        
+        <Routes>
+          <Route path="/" element={<App/>}/>
+          <Route path="/pokeList" element={<PokemonList />}/>
+          <Route path="/login" element={<Login />}/>
+        </Routes>
 
-      {/* You would put the footer here */}
-    </BrowserRouter>
+        {/* You would put the footer here */}
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
