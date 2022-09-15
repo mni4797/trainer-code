@@ -146,7 +146,7 @@
 * To install `npm install @reduxjs/toolkit react-redux`
 
 ## How Redux manages States
-![Redux State Management](/img/Diagram.png)
+![Redux State Management](./img/Diagram.png)
 
 ## Redux Store
 * The centralized place for all of your state information needs
