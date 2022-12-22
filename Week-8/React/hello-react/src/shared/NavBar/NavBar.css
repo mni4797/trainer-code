@@ -1,0 +1,48 @@
+.flex {
+    display: flex;
+
+    flex-direction: row;
+    gap:20px;
+    background-color: rgb(238, 230, 204);
+}
+
+.flex > *:not(p) {
+    padding: 1rem;
+
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+
+    animation: fade-out 1s forwards;
+}
+
+.flex > *:hover:not(p) {
+    background-color: rgb(194, 188, 169);
+    border-radius: 10px;
+
+    animation: fade-in 1s forwards;
+}
+
+@keyframes fade-in {
+    from {
+        background-color: rgb(194, 188, 169, 0);
+    }
+
+    to {
+        background-color: rgb(194, 188, 169, 1);
+        font-size: 1.2rem;
+        margin-block: 1rem;
+    }
+}
+
+@keyframes fade-out {
+    to {
+        background-color: rgb(194, 188, 169, 0);
+    }
+
+    from {
+        background-color: rgb(194, 188, 169, 1);
+        font-size: 1.2rem;
+        margin-block: 1rem;
+    }
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Where we will be configuring the beans our spring container will be managing -->
+<!-- calling this file beans is just convention, you can actually name it whatever you want like Waldo  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- By default, bean scope is set to singleton, and your bean will be created at the loading of your container -->
+    <!-- But say you don't want a bean to be a singleton, say you want a new instance everytime you get a bean -->
+    <bean id="knight" class="com.revature.Knight" scope="prototype">
+        <!-- collaborators and configuration for this bean go here -->
+        <!-- Tell spring to inject spring training class as the 
+            dependency of my knight class
+         -->
+        <constructor-arg ref="springTraining"/>
+    </bean>
+
+    <bean id="springTraining" class="com.revature.SpringTraining">
+        <!-- collaborators and configuration for this bean go here -->
+    </bean>
+
+    <!-- more bean definitions go here -->
+
+    <!-- https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/beans.html#:~:text=The%20following%20example%20shows%20the%20basic%20structure%20of%20XML%2Dbased%20configuration%20metadata%3A -->
+</beans>
